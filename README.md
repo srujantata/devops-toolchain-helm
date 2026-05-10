@@ -19,3 +19,7 @@ Helm values and ArgoCD App-of-Apps manifests for deploying a full DevOps toolcha
 ## Skills Demonstrated
 
 `Helm` · `ArgoCD` · `GitOps` · `Jenkins` · `JFrog` · `SonarQube` · `Kubernetes`
+
+---
+
+> POC config — destroy when done, see [aws-eks-platform/COST.md](../aws-eks-platform/COST.md)
