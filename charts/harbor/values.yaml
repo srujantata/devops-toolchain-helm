@@ -1,0 +1,45 @@
+# Harbor POC values — deployed 2026-05-18
+# Chart: harbor/harbor v1.19.0 (App: 2.15.0)
+# URL: http://a68756541aa5a454d81e6515e061e3c2-574233704.us-east-1.elb.amazonaws.com
+# Default login: admin / Harbor12345
+# NOTE: TLS disabled for POC — enable with cert-manager in production
+expose:
+  type: loadBalancer
+  tls:
+    enabled: false
+
+harborAdminPassword: Harbor12345   # Change in production
+
+persistence:
+  enabled: true
+  persistentVolumeClaim:
+    registry:  { storageClass: ebs-gp3, size: 5Gi }
+    jobservice: { storageClass: ebs-gp3, size: 1Gi }
+    database:  { storageClass: ebs-gp3, size: 1Gi }
+    redis:     { storageClass: ebs-gp3, size: 1Gi }
+    trivy:     { storageClass: ebs-gp3, size: 1Gi }
+
+# Minimal resource requests for t3.medium POC nodes
+core:
+  resources:
+    requests: { memory: 256Mi, cpu: 100m }
+jobservice:
+  resources:
+    requests: { memory: 128Mi, cpu: 50m }
+registry:
+  resources:
+    requests: { memory: 128Mi, cpu: 50m }
+portal:
+  resources:
+    requests: { memory: 64Mi, cpu: 50m }
+database:
+  internal:
+    resources:
+      requests: { memory: 128Mi, cpu: 50m }
+redis:
+  internal:
+    resources:
+      requests: { memory: 64Mi, cpu: 50m }
+trivy:
+  resources:
+    requests: { memory: 256Mi, cpu: 100m }
