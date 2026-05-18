@@ -1,0 +1,17 @@
+# Jenkins POC values — deployed 2026-05-18
+# Chart: jenkins-5.9.22, App: 2.552.x
+# URL: http://a910314d11cee49a99b923e221108e05-468852420.us-east-1.elb.amazonaws.com:8080
+# Admin password stored in k8s secret: kubectl get secret jenkins -n jenkins -o jsonpath='{.data.jenkins-admin-password}' | base64 -d
+controller:
+  resources:
+    requests:
+      cpu: "200m"
+      memory: "512Mi"
+    limits:
+      cpu: "500m"
+      memory: "1Gi"
+  serviceType: LoadBalancer
+  numExecutors: 2
+persistence:
+  size: 5Gi
+  storageClass: ebs-gp3

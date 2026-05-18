@@ -1,0 +1,25 @@
+# SonarQube Community POC values — deployed 2026-05-18
+# Chart: sonarqube-2026.x, App: SonarQube Community
+# URL: http://a386f7224766d43d6b50aeee825abe34-1292105297.us-east-1.elb.amazonaws.com:9000
+# Default login: admin/admin (change immediately in production)
+# NOTE: Requires t3.medium nodes minimum (1.6GB RAM needed)
+community:
+  enabled: true
+resources:
+  requests:
+    cpu: "300m"
+    memory: "1Gi"
+  limits:
+    cpu: "1000m"
+    memory: "2Gi"
+service:
+  type: LoadBalancer
+persistence:
+  enabled: true
+  size: 5Gi
+  storageClass: ebs-gp3
+postgresql:
+  enabled: false   # Using embedded H2 for POC — use external RDS in production
+jvmOpts: "-Xmx512m -Xms256m"
+jvmCEOpts: "-Xmx256m -Xms128m"
+monitoringPasscode: admin123
